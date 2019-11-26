@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html ng-app="ModuleName">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../Content/SuperHeroStyle.css" rel="stylesheet" />
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/Script001.js"></script>
+    <script src="/Scripts/Script002.js"></script>
+    <script src="/Scripts/Employee.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="Scripts/StringService.js"></script>
+</head>
+
+<body>
+    <a href="practice 2.html"> page 2</a>
+    <div class="container" >
+        <!-- Example 1 -->
+        <div ng-controller="ControllerName">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Employee Info</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{employee.firstname}} {{employee.lastname}}</h4>
+                    <p class="card-text">{{employee.func}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- End of Example 1-->
+        
+        <!-- Example 2 --><h1>ng-src</h1>
+        <div ng-controller="ControllerName2">
+            <h3>{{picture.name}}</h3>
+            <img ng-src="{{picture.pic}}" alt="{{picture.info}}" />
+        </div>
+        <!-- End of Example 2-->
+        
+        <!-- Example 3 --><br /><h1>ng-model</h1>
+        <div class="form-group" ng-controller="ControllerName3">
+            <input class="form-control" type="text" name="txtbox" ng-model="message" /><br />
+            <input class="form-control" id="readOnlyInput" type="text" placeholder="{{message}}" readonly="">
+        </div>
+        <!-- End of Example 3-->
+        
+        <!-- Example 4 --><h1>ng-repeat</h1>
+        <div ng-controller="ControllerName4">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info" ng-repeat="employee in employees">
+                        <td>{{employee.firstname}}</td>
+                        <td>{{employee.lastname}}</td>
+                        <td>{{employee.gender}}</td>
+                        <td>{{employee.salary}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Example 4-->
+
+        <!-- Example 5 --><h1>ng-Repeat ParentIndex</h1>
+        <div ng-controller="ControllerName5">
+            <ul>
+                <li ng-repeat="country in countries">
+                    <h1>{{country.name}} - index: {{$index}}</h1>
+                    <ul>
+                        <li ng-repeat="city in country.cities">
+                            {{city.name}} - index: {{$parent.$index}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        <!-- End of Example 5 -->
+
+        <!-- Example 6 --><h1>ng-Click</h1>
+        <div ng-controller="ControllerName6">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Technology</th>
+                        <th scope="col">Likes</th>
+                        <th scope="col">Dislikes</th>
+                        <th scope="col">Like/Dislikes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info" ng-repeat="technology in technologies">
+                        <td>{{technology.name}}</td>
+                        <td>{{technology.likes}}</td>
+                        <td>{{technology.dislikes}}</td>
+                        <td>
+                            <input type="button" value="Like" ng-click="incrementLikes(technology)" />
+                            <input type="button" value="Dislike"  ng-click="incrementDislikes(technology)"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Example 6-->
+
+        <!-- Example 7 --><h1>ng-Filters | </h1>
+        <div ng-controller="ControllerName7">
+            <input class="form-control" type="number" step="1" min="1" max="7" ng-model="rowLimit" />
+            <label>Rows to display </label>
+
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Salary $ </th>
+                        <th scope="col">Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info" ng-repeat="employee in employees |limitTo:rowLimit">
+                        <td>{{employee.firstname | uppercase}}</td>
+                        <td>{{employee.dateofbirth | date:"dd/MM/yyyy"}}</td>
+                        <td>{{employee.gender | lowercase}}</td>
+                        <td>{{employee.salary | currency }}</td>
+                        <td>{{employee.salary | number:2}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Example 7-->
+
+        <!-- Example 8 / 9 --><h1>Filters, orderb, search, Switch, Hide/Show</h1>
+        <div ng-controller="ControllerName7">
+            <br />
+            <input class="form-control2" type="text" placeholder="search by name" ng-model="searchText.firstname" />
+            <br />
+            <input class="form-control2" type="text" placeholder="search by gender" ng-model="searchText.gender"/>
+            <br />
+            <input type="checkbox" name="check" ng-model="exact" /> Exact Match
+            <br />
+            <input type="checkbox" name="check" ng-model="hideSalary" /> Hide Salary
+
+            
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col" ng-click="changeSorting('firstname')"><a>First name</a></th>
+                        <th scope="col" ng-click="changeSorting('dateofbirth')"><a>Birth</a></th>
+                        <th scope="col" ng-click="changeSorting('gender')"><a>Gender</a></th>
+                        <th scope="col" ng-click="changeSorting('salary')" ng-hide="hideSalary"><a>Salary $</a></th>
+                        <th scope="col" ng-show="hideSalary"><a>Salary $</a></th>
+                        <th scope="col" ng-click="changeSorting('city')"><a>City</a> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info" ng-repeat="employee in employees | orderBy:sort.column:sort.descending |filter:searchText:exact">
+                        <td>{{employee.firstname | uppercase}}</td>
+                        <td>{{employee.dateofbirth | date:"dd/MM/yyyy"}}</td>
+                        <td>{{employee.gender | lowercase}}</td>
+                        <td ng-hide="hideSalary">{{employee.salary | currency }}</td>
+                        <td ng-show="hideSalary" >########</td>
+                        <td>{{employee.city |city}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Example 8-->
+
+        <!--Example 10 --> <h1>ng-include</h1>
+        <div ng-controller="ControllerName10"> 
+            <div ng-include="employeeView"></div>
+        </div>
+        <!-- End of Example 10 -->
+
+        <!-- Example 11 -->
+        <div ng-controller="ControllerName11"> <h1>Service.Js</h1>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col"> First name </th>
+                        <th scope="col"> <input class="form-control2" type="text" name="name" value="" ng-model="input" /> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info">
+                        <th scope="col"> Result </th>
+                        <th scope="col"> <input class="form-control2" type="text" name="name" value="" ng-model="output"/> </th>
+                    </tr>
+                    <tr class="table-info">
+                        <th scope="col"> </th>
+                        <th scope="col"> <input readonly="" class="btn-outline-dark" type="button" name="name" value="Proccess string" ng-click="transformString(input)" /> </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Example 11 -->
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿
+<table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Salary </th>
+                <th scope="col">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-danger" ng-repeat="employee in employees">
+                <td>{{employee.firstname }}</td>
+                <td>{{employee.dateofbirth | date:"dd/MM/yyyy"}}</td>
+                <td>{{employee.gender | lowercase}}</td>
+                <td>{{employee.salary | currency }}</td>
+                <td>{{employee.city |city}}</td>
+            </tr>
+        </tbody>
+</table>
+

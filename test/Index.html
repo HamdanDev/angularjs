@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html ng-app="AppModule">
+<head>
+    <title></title>
+    <base href="/" />
+	<meta charset="utf-8" />
+
+    <link href="Content/MyStyleSheet.css" rel="stylesheet" />
+    <link href="Content/SuperHeroStyle.css" rel="stylesheet" />
+
+    <script src="ng-Scripts/angular.js"></script>
+    <script src="ng-Scripts/angular-route.js"></script>
+    <script src="ng-Scripts/Script.js"></script>
+    <script src="ng-Scripts/angular-ui-router.js"></script>
+
+
+
+</head>
+<body>
+    <!--Header-->
+    <div id="header">
+    <Center><h1>Logo goes here</h1></Center>
+    </div>
+
+    <!--SideBar-->
+
+
+    <div id="content">
+        <div id="sidebar-left">
+
+            <div class="alert alert-dismissible alert-light" ui-sref-active="activeState" >
+                <a class="alert-link" ui-sref="home" >Home</a>
+            </div>
+
+            <div class="alert alert-dismissible alert-light" ui-sref-active="activeState">
+                <a class="alert-link" ui-sref="courses"  >Courses</a>
+            </div>
+
+            <div class="alert alert-dismissible alert-light" ui-sref-active="activeState">
+                <a class="alert-link" ui-sref="studentParent.students" >Students</a>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="main">
+        <ui-view></ui-view>
+        <!--<ng-view></ng-view> -->
+    </div>
+
+        <!--Main-->
+
+
+    <!--Footer-->
+    <!--<div id="footer">
+        <Center><h1>here's a Footer</h1></Center>
+    </div>-->
+</body>
+</html>

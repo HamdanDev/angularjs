@@ -1,0 +1,27 @@
+﻿<h1>List of Students ({{stdParentCtrl.total}}) </h1>
+
+    <div class="alert alert-dismissible alert-light">
+        <form class="form-inline my-2 my-lg-0" name="myForm">
+            <input class="form-control mr-sm-2" type="text" ng-model="studentCtrl.name" placeholder="search by Name" required>
+            <button class="btn btn-secondary my-2 my-sm-0" ng-disabled="myForm.$invalid" ng-click="studentCtrl.SearchStudent()">Search</button>
+        </form>
+    </div>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info" ng-repeat="student in studentCtrl.students">
+                <td>
+                    <a ui-sref="studentParent.StudentDetails({id : student.Id}) "> {{student.Name}} </a>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-secondary my-2 my-sm-0" ng-click="studentCtrl.ReloadData()">Refrech</button>
+</div>
+
+

@@ -1,0 +1,40 @@
+﻿
+
+<div ng-repeat="student in studentDetailsCtrl.student " >
+
+<h1>Student Details :   </h1>
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header"> Name : {{student.Name}} </div>
+        <div class="card-body">
+            <p class="card-text">Age :   {{student.Age}}</p>
+            <p class="card-text">City :  {{student.City}}</p>
+        </div>
+    </div>
+
+</div>
+
+<br/><br/>
+<a ui-sref="studentParent.students"> ← Return to the previous page </a>
+
+
+<!--<h1>Student Details :   </h1>
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header"> Name : {{studentDetailsCtrl.student.Name}} </div>
+    <div class="card-body">
+        <p class="card-text">Age : {{studentDetailsCtrl.student.Age}}</p>
+        <p class="card-text">City : {{studentDetailsCtrl.student.City}}</p>
+    </div>
+</div>-->
+
+<!--<div ng-controller="studentDetailsCtrl.student as st">
+    <h1>Student Details :   </h1>
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header"> Name : {{st.Name}} </div>
+        <div class="card-body">
+            <p class="card-text">Age : {{st.Age}}</p>
+            <p class="card-text">City : {{st.City}}</p>
+        </div>
+    </div>
+</div>-->
+        
+
